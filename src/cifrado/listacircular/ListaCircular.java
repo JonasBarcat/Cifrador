@@ -12,7 +12,7 @@ package cifrado.listacircular;
 public class ListaCircular {
       
     private Item lc;
-   
+    private int c=0;
 
     
     public ListaCircular() {
@@ -33,7 +33,7 @@ public class ListaCircular {
          elemento.setSiguiente(lc.getSiguiente());
          lc.setSiguiente(elemento);
         }
-        
+        c++;
     }
     
     public void LCBorrar(){  // si esta vacia entonces no hace nada
@@ -41,8 +41,10 @@ public class ListaCircular {
         }else{
             if(lc.getSiguiente()==lc){
                 lc=null;
+                c--;
             }else{
                 lc.setSiguiente(lc.getSiguiente().getSiguiente());
+                c--;
             }
         }
     }
@@ -64,15 +66,33 @@ public class ListaCircular {
         }
     }
     
-    public void verLC(){
-//        System.out.println("LC puntero : "+lc.getLetra());
-//        System.out.println("Ventana : "+lc.getSiguiente().getLetra());
-        Item aux=lc;    
-        for(int i=0; i<9; i++){
-            System.out.println(aux.getLetra());
-            aux=aux.getSiguiente();
-        }
-        
+    
+    public int LClongitud(){// no cuenta la marca final '$'
+        return this.c-1;
     }
+    
+    
+//    public void verLC(){
+//      Item auxiliar=lc.getSiguiente().getSiguiente();
+//     for(int i=0;i<LClongitud();i++){
+//         System.out.print(auxiliar.getLetra());
+//         auxiliar=auxiliar.getSiguiente();
+//        } 
+//    }
+    
+     public String verLC(){
+      Item auxiliar=lc.getSiguiente().getSiguiente();
+      String palabra="";
+      for(int i=0;i<LClongitud();i++){       // cargo cada elemento de LC en un string
+         palabra=palabra+auxiliar.getLetra();
+         auxiliar=auxiliar.getSiguiente();
+        } 
+      StringBuilder builder=new StringBuilder(palabra);  // doy vuelta el string para mostrar la palabra al derecho
+      String palabrainvertida=builder.reverse().toString();
+      return palabrainvertida;
+    }
+    
+    
+    
    
 }
