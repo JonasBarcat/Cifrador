@@ -64,6 +64,15 @@ public class ListaCircular {
         }
     }
     
- 
+    public void verLC(){
+//        System.out.println("LC puntero : "+lc.getLetra());
+//        System.out.println("Ventana : "+lc.getSiguiente().getLetra());
+        Item aux=lc;    
+        for(int i=0; i<9; i++){
+            System.out.println(aux.getLetra());
+            aux=aux.getSiguiente();
+        }
+        
+    }
    
 }
