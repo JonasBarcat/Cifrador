@@ -19,13 +19,17 @@ public class Cifrado {
      * NOTA: cada cadena debe ingresarse con una marca final '$'
      * @code LC que contiene la clave para la encriptacion
      */
+        
+    
     public static void main(String[] args) {
         // TODO code application logic here
+            Formulario ventana=new Formulario();
+            ventana.setVisible(true);
+            ventana.setLocationRelativeTo(null);
         
             ListaCircular toEncript; //cadena a enciptar
             ListaCircular code; //codigo para la encriptacion
   
-                
             toEncript=Cifrado.StringToLinkedList("hola my name is jonas$");
             code=Cifrado.StringToLinkedList("12371");
 
