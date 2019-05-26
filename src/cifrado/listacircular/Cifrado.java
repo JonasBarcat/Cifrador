@@ -27,21 +27,36 @@ public class Cifrado {
   
                 
             toEncript=Cifrado.StringToLinkedList("hola soy jonas$");
-            code=Cifrado.StringToLinkedList("4311");
+            code=Cifrado.StringToLinkedList("1251");
 
 
             if(!toEncript.esLCvacia() && !code.esLCvacia()){
                         Cifrado.encriptar(toEncript, code);
             }else{System.out.println("No se pudo encriptar: ENTRADA ERRONEA");}
-            
-            
-            System.out.println("La lingutod de LC es: "+toEncript.LClongitud());
+           
             
             System.out.print("Cadena encriptada: ");
-//            toEncript.verLC();
             System.out.println(toEncript.verLC());
             System.out.println();
+            
+            
+            
+            
+            
+            
+            System.out.println("###################################################");
+            System.out.println("###################################################");
+            System.out.println("###################################################");
          
+            if(!toEncript.esLCvacia() && !code.esLCvacia()){
+                        Cifrado.desencriptar(toEncript, code);
+            }else{System.out.println("No se pudo desencriptar: ENTRADA ERRONEA");}
+            
+            
+            System.out.print("Cadena desencriptada: ");
+            System.out.println(toEncript.verLC());
+            System.out.println();
+            
     }
     
     
@@ -85,6 +100,34 @@ public class Cifrado {
         }       
     }
     
+    
+    public static void desencriptar(ListaCircular listaToEncript,ListaCircular CodeList){
+        listaToEncript.LCRotar(); // en la ventana aparecera inicialmente la anteulitma letra ingresada, sino se modificaria la marca final
+        
+        if(listaToEncript.LCValor().getLetra()=='$'){ 
+               System.out.println();
+               System.out.println("Desencriptacion realizada con exito");
+        }else{
+              char letra=listaToEncript.LCValor().getLetra();  // obtengo la letra a repeemplazar
+              int desplazar=(int)CodeList.LCValor().getLetra()-48; // obtengo uno de los valores numericos del codigo
+              /*
+              Cunado se realiza un cast de ej: 2 a int, ese se transforma en el valor pero en 
+              ascii, por ejemplo: 1(char)=49 en ascii, por este motivo se le resta 48
+              */
+              
+              
+              // hago el encriptamiento de la letra
+              int asciiValue = (int)letra;      
+              asciiValue=asciiValue-desplazar;
+              letra = (char)asciiValue;  
+              listaToEncript.LCValor().setLetra(letra);
+                    
+              
+              // avanzo al siguiente numero del codigo
+              CodeList.LCRotar();
+              desencriptar(listaToEncript,CodeList);
+        }       
+    }
     
     
     
