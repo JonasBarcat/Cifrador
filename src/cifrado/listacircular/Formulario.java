@@ -10,29 +10,22 @@ import java.applet.AudioClip;
  * @author jonas
  */
 public class Formulario extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Formulario
      */
-    public static String mensaje;
-    public static String codigo;
-    public static String salida;
-    
-    public Formulario() {
-        initComponents();
-            
-          AudioClip sonido;
-          sonido=java.applet.Applet.newAudioClip(getClass().getResource("/imagenes/sound.wav"));
-          sonido.play();
-       
-            
+        AudioClip sonido;
+        
+    public Formulario() {     
+        initComponents();      
+        sonido=java.applet.Applet.newAudioClip(getClass().getResource("/imagenes/sound.wav"));
+        sonido.loop();
+        areaMensajeOUT.setLineWrap(true); // para hacer saltos de line automaticos
+        areaMensajeIN.setLineWrap(true); 
     }
     
     
-    
-
-
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,7 +106,7 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel4.setForeground(java.awt.Color.green);
         jLabel4.setText("Mensaje encriptado");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 167, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.jpg"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 300));
@@ -126,17 +119,17 @@ public class Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonEncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEncriptarActionPerformed
-       mensaje=areaMensajeIN.getText();
-       codigo=areaMensajeIN.getText();
-       funcion();
-       areaMensajeOUT.setText(salida);
+        areaMensajeOUT.removeAll(); // limpia el contenedor de salida por si es que ya se encripto algo
+        String mensajencriptado;
+        Cifrado nuevoCifrado=new Cifrado();
+        mensajencriptado=nuevoCifrado.funcionmaster(areaMensajeIN.getText(), textCodigo.getText());
+        areaMensajeOUT.setText(mensajencriptado);
     }//GEN-LAST:event_botonEncriptarActionPerformed
 
     
     public static void main(String args[]) {
         
-        
-        
+       
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -158,14 +151,12 @@ public class Formulario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        
-        
+   
             Formulario ventana=new Formulario();
             ventana.setVisible(true);
             ventana.setLocationRelativeTo(null);
             
-            
+           
            
        
             
@@ -185,71 +176,5 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField textCodigo;
     // End of variables declaration//GEN-END:variables
-
-
-public static void funcion(){
-        
-            ListaCircular toEncript; //cadena a enciptar
-            ListaCircular code; //codigo para la encriptacion
-  
-            toEncript=Formulario.StringToLinkedList(mensaje);
-            code=Formulario.StringToLinkedList(codigo);
-
-
-            if(!toEncript.esLCvacia() && !code.esLCvacia()){
-                        Formulario.encriptar(toEncript, code);
-            }else{System.out.println("No se pudo encriptar: ENTRADA ERRONEA");}
-           
-            
-            System.out.print("Cadena encriptada: ");
-            System.out.println(toEncript.verLC());
-            System.out.println();
-            
-           salida=toEncript.verLC();
-
-}    
-    
-
- public static ListaCircular StringToLinkedList(String cadena){
-        ListaCircular LC=new ListaCircular();
-        for(int i=0; i<cadena.length();i++){
-            Item letra=new Item(cadena.charAt(i));
-            LC.LCInsertar(letra);
-        }   
-    return LC;
-    } 
-    
-    
-    public static void encriptar(ListaCircular listaToEncript,ListaCircular CodeList){
-        listaToEncript.LCRotar(); // en la ventana aparecera inicialmente la anteulitma letra ingresada, sino se modificaria la marca final
-        
-        if(listaToEncript.LCValor().getLetra()=='$'){ 
-               System.out.println();
-               System.out.println("Encriptacion realizada con exito");
-        }else{
-              char letra=listaToEncript.LCValor().getLetra();  // obtengo la letra a repeemplazar
-              int desplazar=(int)CodeList.LCValor().getLetra()-48; // obtengo uno de los valores numericos del codigo
-              /*
-              Cunado se realiza un cast de ej: 2 a int, ese se transforma en el valor pero en 
-              ascii, por ejemplo: 1(char)=49 en ascii, por este motivo se le resta 48
-              */
-
-                      
-              // hago el encriptamiento de la letra
-              int asciiValue = (int)letra;      
-              asciiValue=asciiValue+desplazar;
-              letra = (char)asciiValue;  
-              listaToEncript.LCValor().setLetra(letra);
-                    
-              
-              // avanzo al siguiente numero del codigo
-              CodeList.LCRotar();
-              encriptar(listaToEncript,CodeList);
-        }       
-    }
- 
-
-
-
 
 }

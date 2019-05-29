@@ -12,31 +12,53 @@ package cifrado.listacircular;
 public class Cifrado {
 
     /**
-     * @param args the command line arguments
+     * @param areaTextMensaje    
+     * @param codigoEncriptacion    
+     * @return     
      * @toEncript es LC que contiene los caracteres de una determinada cadena a cifrar
      * con el metodo StringToLinkedList a una cadena la insertamos en una LC donde cada
      * item de la cadena es un caracter del string ingresado
      * NOTA: cada cadena debe ingresarse con una marca final '$'
      * @code LC que contiene la clave para la encriptacion
      */
-        
     
-    public static void main(String[] args) {
-        // TODO code application logic here
-            Formulario ventana=new Formulario();
-            ventana.setVisible(true);
-            ventana.setLocationRelativeTo(null);
-        
-            ListaCircular toEncript; //cadena a enciptar
+     public String funcionmaster(String areaTextMensaje,String codigoEncriptacion){
+     
+         
+         //##FILTROS
+         
+            if(areaTextMensaje.isEmpty() || codigoEncriptacion.isEmpty()){
+                return "Error.Ingrese mensaje y código";    
+            }  
+            ///
+            char marcafinal=areaTextMensaje.charAt(areaTextMensaje.length()-1);
+            if(marcafinal!='$'){
+                return "Error.Ausencia de marca final($)";
+            }
+            ///
+            boolean esCodigoNumerico; // esta seccion me ayuda a verificar que el codigo sea numerico
+            try {
+            Integer.parseInt(codigoEncriptacion);
+            esCodigoNumerico = true;
+             } catch (NumberFormatException excepcion) {
+            esCodigoNumerico = false;
+            }
+            if(!esCodigoNumerico){
+              return "Error.Codigo incorrecto";      
+            }
+            
+            
+//###############################################################################33            
+            
+            
+         //al llamar esta funcion, se generan 2 listas circulares
+            ListaCircular toEncript; //aqui va la cadena a enciptar
             ListaCircular code; //codigo para la encriptacion
   
-            toEncript=Cifrado.StringToLinkedList("hola my name is jonas$");
-            code=Cifrado.StringToLinkedList("12371");
+            toEncript=Cifrado.StringToLinkedList(areaTextMensaje);//la funcion recibe el mensaje y lo vuelva a una listaCircular
+            code=Cifrado.StringToLinkedList(codigoEncriptacion);
 
-
-            if(!toEncript.esLCvacia() && !code.esLCvacia()){
-                        Cifrado.encriptar(toEncript, code);
-            }else{System.out.println("No se pudo encriptar: ENTRADA ERRONEA");}
+            Cifrado.encriptar(toEncript, code); // aqui es donde se produce el incriptamiento
            
             
             System.out.print("Cadena encriptada: ");
@@ -50,26 +72,26 @@ public class Cifrado {
             System.out.println("###################################################");
             System.out.println("###################################################");
          
-            
-            code=Cifrado.StringToLinkedList("12371"); 
-            /*
-            se debe reinsertar el codigo, sino al utilizar la desencriptacion en lugar
-            de comenzar a leer el codigo desde cero entonces lo lee desde el valor en
-            el que quedó anteriormente
-            */
-            
-            
-            if(!toEncript.esLCvacia() && !code.esLCvacia()){
-                        Cifrado.desencriptar(toEncript, code);
-            }else{System.out.println("No se pudo desencriptar: ENTRADA ERRONEA");}
-            
-            
-            System.out.print("Cadena desencriptada: ");
-            System.out.println(toEncript.verLC());
-            System.out.println();
-            
-    }
-    
+//            
+//            code=Cifrado.StringToLinkedList("12371"); 
+//            /*
+//            se debe reinsertar el codigo, sino al utilizar la desencriptacion en lugar
+//            de comenzar a leer el codigo desde cero entonces lo lee desde el valor en
+//            el que quedó anteriormente
+//            */
+//            
+//            
+//            if(!toEncript.esLCvacia() && !code.esLCvacia()){
+//                        Cifrado.desencriptar(toEncript, code);
+//            }else{System.out.println("No se pudo desencriptar: ENTRADA ERRONEA");}
+//            
+//            
+//            System.out.print("Cadena desencriptada: ");
+//            System.out.println(toEncript.verLC());
+//            System.out.println();
+//            
+        return toEncript.verLC(); // la funcion verLC devuelve la """cadena""" almacenada en la lista Circular
+     }
     
     
     
