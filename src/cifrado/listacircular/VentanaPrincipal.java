@@ -19,6 +19,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         sonido=java.applet.Applet.newAudioClip(getClass().getResource("/imagenes/sound.wav"));
         sonido.loop();
+        jTextArea1.setEditable(false);
     }
 
     
@@ -52,9 +53,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Encriptador V8 by Jonás Barcat");
+        setTitle("Encriptador V1.0 by Jonás Barcat");
         setBackground(java.awt.Color.black);
         setResizable(false);
         setSize(new java.awt.Dimension(300, 600));
@@ -62,6 +66,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         panelprincipal.setBackground(java.awt.Color.lightGray);
         panelprincipal.setFont(new java.awt.Font("Ubuntu", 2, 15)); // NOI18N
+        panelprincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelprincipalMouseClicked(evt);
+            }
+        });
 
         encriptador.setBackground(java.awt.Color.green);
         encriptador.setLayout(null);
@@ -70,6 +79,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         encriptar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         encriptar.setForeground(java.awt.Color.red);
         encriptar.setText("ENCRIPTAR");
+        encriptar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         encriptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 encriptarActionPerformed(evt);
@@ -177,6 +187,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         desencriptar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         desencriptar.setForeground(java.awt.Color.red);
         desencriptar.setText("DESENCRIPTAR");
+        desencriptar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         desencriptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 desencriptarActionPerformed(evt);
@@ -230,10 +241,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         panelprincipal.addTab("Desencriptador", desencriptador);
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Instrucciones:\n-Cada vez que quiera encriptar un mensaje se debe\n incluir una marca al final del mismo ($). Ej: Hola$\n-Lo mismo se debe hacer si se desea desencriptar.\n\n\n\nMas:\n\tEncriptador V1.0 beta\nCreado por Jonas Ezequiel Barcat\nAlumno de la carrega Ing. en Computación\nTrabajo realizado para: Estructura de Datos y Algorítmos\n\t\t                 \n\n\t\t                 FACET | UNT | 2019");
+        jScrollPane5.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelprincipal.addTab("Ayuda", jPanel1);
+
         getContentPane().add(panelprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 441, 328));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void panelprincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelprincipalMouseClicked
+
+    }//GEN-LAST:event_panelprincipalMouseClicked
 
     private void desencriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desencriptarActionPerformed
         textdesencriptado.removeAll(); // limpia el contenedor de salida por si es que ya se encripto algo
@@ -298,10 +337,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTabbedPane panelprincipal;
     private javax.swing.JButton pegar1;
     private javax.swing.JButton pegar2;
