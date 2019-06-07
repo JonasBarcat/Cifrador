@@ -37,6 +37,8 @@ public class Formulario extends javax.swing.JFrame {
         textCodigo = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         areaMensajeOUT = new javax.swing.JTextArea();
+        pegarTexto = new javax.swing.JButton();
+        copiarTexto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -68,7 +70,7 @@ public class Formulario extends javax.swing.JFrame {
                 botonEncriptarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonEncriptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 135, 120, 55));
+        getContentPane().add(botonEncriptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 120, 55));
 
         areaMensajeIN.setBackground(java.awt.Color.black);
         areaMensajeIN.setColumns(20);
@@ -80,6 +82,11 @@ public class Formulario extends javax.swing.JFrame {
 
         textCodigo.setBackground(java.awt.Color.black);
         textCodigo.setForeground(java.awt.Color.red);
+        textCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCodigoActionPerformed(evt);
+            }
+        });
         getContentPane().add(textCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 74, 88, 30));
 
         areaMensajeOUT.setBackground(java.awt.Color.black);
@@ -89,6 +96,28 @@ public class Formulario extends javax.swing.JFrame {
         jScrollPane2.setViewportView(areaMensajeOUT);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 196, -1, -1));
+
+        pegarTexto.setBackground(java.awt.Color.gray);
+        pegarTexto.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        pegarTexto.setForeground(java.awt.Color.red);
+        pegarTexto.setText("Pegar");
+        pegarTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pegarTextoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pegarTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
+
+        copiarTexto.setBackground(java.awt.Color.gray);
+        copiarTexto.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        copiarTexto.setForeground(java.awt.Color.red);
+        copiarTexto.setText("Copiar\n");
+        copiarTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copiarTextoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(copiarTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
         jLabel1.setBackground(java.awt.Color.black);
         jLabel1.setFont(new java.awt.Font("Ubuntu", 3, 18)); // NOI18N
@@ -109,7 +138,7 @@ public class Formulario extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.jpg"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 300));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,6 +154,19 @@ public class Formulario extends javax.swing.JFrame {
         mensajencriptado=nuevoCifrado.funcionmaster(areaMensajeIN.getText(), textCodigo.getText());
         areaMensajeOUT.setText(mensajencriptado);
     }//GEN-LAST:event_botonEncriptarActionPerformed
+
+    private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCodigoActionPerformed
+
+    private void pegarTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pegarTextoActionPerformed
+        areaMensajeIN.paste();
+    }//GEN-LAST:event_pegarTextoActionPerformed
+
+    private void copiarTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copiarTextoActionPerformed
+        areaMensajeOUT.selectAll();
+        areaMensajeOUT.copy();
+    }//GEN-LAST:event_copiarTextoActionPerformed
 
     
     public static void main(String args[]) {
@@ -151,14 +193,11 @@ public class Formulario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-   
+            
             Formulario ventana=new Formulario();
             ventana.setVisible(true);
             ventana.setLocationRelativeTo(null);
-            
-           
-           
-       
+
             
     }
 
@@ -167,6 +206,7 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JTextArea areaMensajeOUT;
     private javax.swing.JButton botonEncriptar;
     private javax.swing.JButton botonSalir;
+    private javax.swing.JButton copiarTexto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -174,6 +214,7 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton pegarTexto;
     private javax.swing.JTextField textCodigo;
     // End of variables declaration//GEN-END:variables
 

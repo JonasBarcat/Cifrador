@@ -94,6 +94,52 @@ public class Cifrado {
      }
     
     
+     
+     
+      public String funcionmaster2(String areaTextMensaje,String codigoEncriptacion){
+     
+         
+         //##FILTROS
+         
+            if(areaTextMensaje.isEmpty() || codigoEncriptacion.isEmpty()){
+                return "Error.Ingrese mensaje y código";    
+            }  
+            ///
+            char marcafinal=areaTextMensaje.charAt(areaTextMensaje.length()-1);
+            if(marcafinal!='$'){
+                return "Error.Ausencia de marca final($)";
+            }
+            ///
+            boolean esCodigoNumerico; // esta seccion me ayuda a verificar que el codigo sea numerico
+            try {
+            Integer.parseInt(codigoEncriptacion);
+            esCodigoNumerico = true;
+             } catch (NumberFormatException excepcion) {
+            esCodigoNumerico = false;
+            }
+            if(!esCodigoNumerico){
+              return "Error.Codigo incorrecto";      
+            }
+            
+            
+//###############################################################################33            
+            
+            
+         //al llamar esta funcion, se generan 2 listas circulares
+            ListaCircular toEncript; //aqui va la cadena a enciptar
+            ListaCircular code; //codigo para la encriptacion
+  
+            toEncript=Cifrado.StringToLinkedList(areaTextMensaje);//la funcion recibe el mensaje y lo vuelva a una listaCircular
+            code=Cifrado.StringToLinkedList(codigoEncriptacion);
+
+            Cifrado.desencriptar(toEncript, code);
+            
+
+        
+//            
+        return toEncript.verLC(); // la funcion verLC devuelve la """cadena""" almacenada en la lista Circular
+     }
+    
     
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
