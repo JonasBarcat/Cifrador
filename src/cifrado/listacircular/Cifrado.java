@@ -18,7 +18,7 @@ public class Cifrado {
      * @toEncript es LC que contiene los caracteres de una determinada cadena a cifrar
      * con el metodo StringToLinkedList a una cadena la insertamos en una LC donde cada
      * item de la cadena es un caracter del string ingresado
-     * NOTA: cada cadena debe ingresarse con una marca final '$'
+     * NOTA: cada cadena debe ingresarse con una marca final 'Ψ'
      * @code LC que contiene la clave para la encriptacion
      */
     
@@ -32,8 +32,8 @@ public class Cifrado {
             }  
             ///
             char marcafinal=areaTextMensaje.charAt(areaTextMensaje.length()-1);
-            if(marcafinal!='$'){
-                return "Error.Ausencia de marca final($)";
+            if(marcafinal!='Ψ'){
+                return "Error.Ausencia de marca final(Ψ)";
             }
             ///
             boolean esCodigoNumerico; // esta seccion me ayuda a verificar que el codigo sea numerico
@@ -106,8 +106,8 @@ public class Cifrado {
             }  
             ///
             char marcafinal=areaTextMensaje.charAt(areaTextMensaje.length()-1);
-            if(marcafinal!='$'){
-                return "Error.Ausencia de marca final($)";
+            if(marcafinal!='Ψ'){
+                return "Error.Ausencia de marca final(Ψ)";
             }
             ///
             boolean esCodigoNumerico; // esta seccion me ayuda a verificar que el codigo sea numerico
@@ -159,7 +159,7 @@ public class Cifrado {
     public static void encriptar(ListaCircular listaToEncript,ListaCircular CodeList){
         listaToEncript.LCRotar(); // en la ventana aparecera inicialmente la anteulitma letra ingresada, sino se modificaria la marca final
         
-        if(listaToEncript.LCValor().getLetra()=='$'){ 
+        if(listaToEncript.LCValor().getLetra()=='Ψ'){ 
                System.out.println();
                System.out.println("Encriptacion realizada con exito");
         }else{
@@ -188,7 +188,7 @@ public class Cifrado {
     public static void desencriptar(ListaCircular listaToDecrypt,ListaCircular CodeList){
         listaToDecrypt.LCRotar(); // en la ventana aparecera inicialmente la anteulitma letra ingresada, sino se modificaria la marca final
         
-        if(listaToDecrypt.LCValor().getLetra()=='$'){ 
+        if(listaToDecrypt.LCValor().getLetra()=='Ψ'){ 
                System.out.println();
                System.out.println("Desencriptacion realizada con exito");
         }else{

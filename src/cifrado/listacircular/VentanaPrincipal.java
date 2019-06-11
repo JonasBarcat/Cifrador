@@ -5,7 +5,6 @@
  */
 package cifrado.listacircular;
 import java.applet.AudioClip;
-import javax.swing.*;
 
 /**
  *
@@ -98,7 +97,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         encriptador.add(pegar1);
-        pegar1.setBounds(204, 32, 70, 22);
+        pegar1.setBounds(204, 32, 70, 27);
 
         copiar1.setBackground(java.awt.Color.lightGray);
         copiar1.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
@@ -110,7 +109,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         encriptador.add(copiar1);
-        copiar1.setBounds(200, 160, 70, 22);
+        copiar1.setBounds(200, 160, 70, 27);
 
         textAencriptar.setBackground(java.awt.Color.black);
         textAencriptar.setColumns(20);
@@ -169,7 +168,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         desencriptador.add(copiar2);
-        copiar2.setBounds(204, 159, 70, 22);
+        copiar2.setBounds(204, 159, 70, 27);
 
         pegar2.setBackground(java.awt.Color.lightGray);
         pegar2.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
@@ -181,7 +180,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         desencriptador.add(pegar2);
-        pegar2.setBounds(204, 32, 70, 22);
+        pegar2.setBounds(204, 32, 70, 27);
 
         desencriptar.setBackground(java.awt.Color.lightGray);
         desencriptar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
@@ -243,7 +242,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Instrucciones:\n-Cada vez que quiera encriptar un mensaje se debe\n incluir una marca al final del mismo ($). Ej: Hola$\n-Lo mismo se debe hacer si se desea desencriptar.\n\n\n\nMas:\n\tEncriptador V1.0 beta\nCreado por Jonas Ezequiel Barcat\nAlumno de la carrega Ing. en Computación\nTrabajo realizado para: Estructura de Datos y Algorítmos\n\t\t                 \n\n\t\t                 FACET | UNT | 2019");
+        jTextArea1.setText("Instrucciones:\n-Cada vez que desee encriptar un mensaje se debe\nincluir un código de encriptacion el cual solo usted\npuede conocerlo.\n-Al momento de desencriptar  se  debe insertar  el\nmismo código que usó para la encriptacion. \n\n\nMás:\n\tEncriptador V1.0 beta\nCreado por Jonas Ezequiel Barcat\nAlumno de la carrega Ing. en Computación\nTrabajo realizado para: Estructura de Datos y Algorítmos\n\t\t                 \n\n\t\t                 FACET | UNT | 2019");
         jScrollPane5.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -277,8 +276,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void desencriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desencriptarActionPerformed
         textdesencriptado.removeAll(); // limpia el contenedor de salida por si es que ya se encripto algo
         String mensajedesencriptado;
+        String aux=textAdesencriptar.getText().concat("Ψ");
         Cifrado nuevoCifrado=new Cifrado();
-        mensajedesencriptado=nuevoCifrado.funcionmaster2(textAdesencriptar.getText(), codigo2.getText()); // la funcion master 2 es la que desencripta
+        mensajedesencriptado=nuevoCifrado.funcionmaster2(aux, codigo2.getText()); // la funcion master 2 es la que desencripta
         textdesencriptado.setText(mensajedesencriptado);
     }//GEN-LAST:event_desencriptarActionPerformed
 
@@ -303,8 +303,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void encriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encriptarActionPerformed
         textoEncriptado.removeAll(); // limpia el contenedor de salida por si es que ya se encripto algo
         String mensajencriptado;
+        String aux=textAencriptar.getText().concat("Ψ");
         Cifrado nuevoCifrado=new Cifrado();
-        mensajencriptado=nuevoCifrado.funcionmaster(textAencriptar.getText(), codigo1.getText());
+        mensajencriptado=nuevoCifrado.funcionmaster(aux, codigo1.getText());
         textoEncriptado.setText(mensajencriptado);
     }//GEN-LAST:event_encriptarActionPerformed
 
